@@ -1,12 +1,12 @@
 [Unit]
- Description=My LCD Service
- After=multi-user.target
+Description=DWIN LCD Service
+After=multi-user.target
 
- [Service]
- Type=idle
- ExecStartPre=/bin/sleep 30
- ExecStart=/bin/sh -c '/usr/bin/env python3 /home/pi/DWIN_T5UIC1_LCD/run.py  > /tmp/lcd.log 2>&1'
+[Service]
+User=pi
+Type=idle
+ExecStartPre=/bin/sleep 10
+ExecStart=/home/pi/DWIN_T5UIC1_LCD/run.py
 
- [Install]
- WantedBy=multi-user.target
-
+[Install]
+WantedBy=multi-user.target
