@@ -5,7 +5,7 @@ After=multi-user.target
 [Service]
 User=pi
 Type=idle
-ExecStartPre=/bin/sleep 10
+ExecStartPre=sh -c 'while true; do { fuser /home/pi/printer_data/comms/klippy.sock 2>/dev/null | grep -q "[0-9]"; } && { curl --silent http://127.0.0.1/server/info | grep -q api_version; } && break || { echo waiting...; sleep 1; }; done'
 ExecStart=/home/pi/DWIN_T5UIC1_LCD/run.py
 
 [Install]
